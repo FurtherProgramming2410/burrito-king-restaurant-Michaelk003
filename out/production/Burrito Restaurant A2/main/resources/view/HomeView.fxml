@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="TOP_CENTER" prefHeight="450.0" prefWidth="544.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+  <children>
+    <MenuBar fx:id="menu" prefHeight="25.0" prefWidth="870.0" VBox.vgrow="NEVER">
+      <menus>
+            <Menu fx:id="profile" mnemonicParsing="false" text="Profile">
+              <items>
+                <MenuItem fx:id="viewProfile" mnemonicParsing="false" text="View my profile" />
+                  <MenuItem fx:id="updateProfile" mnemonicParsing="false" text="Update my profile" />
+              </items>
+            </Menu>
+      </menus>
+    </MenuBar>
+      <Label id="lblGreeting" text="Hello">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <Button fx:id="vieworder" alignment="CENTER" mnemonicParsing="false" text="View All Orders" />
+            <Button fx:id="exportorder" alignment="CENTER" mnemonicParsing="false" text="Export Orders" />
+            <Button fx:id="additems" alignment="CENTER" mnemonicParsing="false" text="Add Items to Cart " />
+            <Button fx:id="logout" alignment="CENTER" mnemonicParsing="false" text="Logout" />
+         </children>
+      </HBox>
+  </children>
+</VBox>
