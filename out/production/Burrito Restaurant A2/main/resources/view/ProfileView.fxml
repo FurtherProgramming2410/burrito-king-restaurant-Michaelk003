@@ -4,16 +4,18 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0"  xmlns:fx="http://javafx.com/fxml/1">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21">
    <children>
       <Label prefHeight="18.0" prefWidth="78.0" text="Username:" />
-      <Label prefHeight="18.0" prefWidth="78.0" text="1" />
+      <Label fx:id="username" prefHeight="18.0" prefWidth="78.0" text="1" />
       <Label prefHeight="18.0" prefWidth="78.0" text="Password:" />
-      <Label prefHeight="18.0" prefWidth="78.0" text="1" />
-      <Label prefHeight="18.0" prefWidth="78.0" text="First Name:" />
-      <Label prefHeight="18.0" prefWidth="78.0" text="1" />
+      <Label fx:id="password" prefHeight="18.0" prefWidth="78.0" text="1" />
+      <Label  prefHeight="18.0" prefWidth="78.0" text="First Name:" />
+      <Label fx:id="firstname" prefHeight="18.0" prefWidth="78.0" text="1" />
       <Label prefHeight="18.0" prefWidth="78.0" text="Last Name:" />
-      <Label prefHeight="18.0" prefWidth="78.0" text="1" />
-      <Button id="btnGoBack" onAction="#goback"  mnemonicParsing="false" text="Go Back" />
+      <Label fx:id="lastname" prefHeight="18.0" prefWidth="78.0" text="1" />
+      <Label prefHeight="18.0" prefWidth="78.0" text="VIP:" />
+      <Label fx:id="vip" prefHeight="18.0" prefWidth="78.0" text="1" />
+      <Button id="btnGoBack" mnemonicParsing="false" onAction="#goback" text="Go Back" />
    </children>
 </VBox>
