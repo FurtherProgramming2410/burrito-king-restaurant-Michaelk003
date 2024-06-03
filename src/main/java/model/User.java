@@ -6,16 +6,18 @@ public class User {
 	private String firstname;
 	private String lastname;
 	private Boolean vip;
+	private Integer credits;
 
 	public User() {
 	}
 	
-	public User(String username, String password, String firstname, String lastname, Boolean vip) {
+	public User(String username, String password, String firstname, String lastname, Boolean vip, Integer credits) {
 		this.username = username;
 		this.password = password;
 		this.firstname = firstname;
 		this.lastname = lastname;
 		this.vip = vip;
+		this.credits = credits;
 	}
 
 	public String getUsername() {
@@ -38,6 +40,10 @@ public class User {
 		return vip;
 	}
 
+	public Integer getCredits() {
+		return credits;
+	}
+
 	public void setUsername(String username) {
 		this.username = username;
 	}
@@ -58,6 +64,10 @@ public class User {
 
 	public void setVip(Boolean vip) {
 		this.vip = vip;
+	}
+
+	public void setCredits(Integer credits) {
+		this.credits = credits;
 	}
 
 }

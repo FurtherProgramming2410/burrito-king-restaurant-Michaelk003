@@ -27,6 +27,8 @@ public class ProfileController {
     private Label lastname;
     @FXML
     private Label vip;
+    @FXML
+    private Label credits;
 
 
 
@@ -53,6 +55,8 @@ public class ProfileController {
         } else {
             vip.setText("Yes");
         }
+
+        credits.setText(model.getCurrentUser().getCredits().toString());
 
     }
 

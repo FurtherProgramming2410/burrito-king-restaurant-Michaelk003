@@ -40,6 +40,7 @@ public class UserDaoImpl implements UserDao {
 					user.setFirstname(rs.getString("firstname"));
 					user.setLastname(rs.getString("lastname"));
 					user.setVip(rs.getBoolean("vip"));
+					user.setCredits(rs.getInt("credits"));
 					return user;
 				}
 				return null;
@@ -49,7 +50,7 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public User createUser(String username, String password) throws SQLException {
-		String sql = "INSERT INTO " + TABLE_NAME + " VALUES (?, ?, ?, ?, ? )";
+		String sql = "INSERT INTO " + TABLE_NAME + " VALUES (?, ?, ?, ?, ?, ?)";
 		try (Connection connection = Database.getConnection();
 				PreparedStatement stmt = connection.prepareStatement(sql);) {
 			stmt.setString(1, username);
@@ -57,10 +58,11 @@ public class UserDaoImpl implements UserDao {
 			stmt.setString(3, "Firstname");
 			stmt.setString(4, "Lastname");
 			stmt.setBoolean(5, false);
+			stmt.setInt(6, 0);
 
 
 			stmt.executeUpdate();
-			return new User(username, password, "Firstname", "Lastname", false);
+			return new User(username, password, "Firstname", "Lastname", false, 0);
 		}
 	}
 
