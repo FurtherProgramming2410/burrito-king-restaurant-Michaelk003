@@ -13,10 +13,11 @@
    <children>
       <GridPane>
         <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="333.8" minWidth="10.0" prefWidth="64.19998588562012" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="333.8" minWidth="10.0" prefWidth="59.9999557495117" />
+            <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="342.000036239624" minWidth="0.0" prefWidth="94.8" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="311.39996337890625" minWidth="10.0" prefWidth="167.80003662109374" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="250.79998779296875" minWidth="10.0" prefWidth="215.79996337890628" />
         </columnConstraints>
         <rowConstraints>
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -25,22 +26,26 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button mnemonicParsing="false" text="-" GridPane.columnIndex="1" />
-            <Button mnemonicParsing="false" text="-" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Button mnemonicParsing="false" text="-" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Button mnemonicParsing="false" text="-" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <TextField GridPane.columnIndex="2" />
-            <TextArea prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-            <TextField GridPane.columnIndex="2" GridPane.rowIndex="1" />
-            <TextField GridPane.columnIndex="2" GridPane.rowIndex="3" />
-            <Button mnemonicParsing="false" text="+" GridPane.columnIndex="3" />
-            <Button mnemonicParsing="false" text="+" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-            <Button mnemonicParsing="false" text="+" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-            <Button mnemonicParsing="false" text="+" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+            <Button mnemonicParsing="false" text="-" GridPane.columnIndex="2" />
+            <Button mnemonicParsing="false" text="-" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <Button mnemonicParsing="false" text="-" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <Button mnemonicParsing="false" text="-" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+            <TextField GridPane.columnIndex="3" />
+            <TextArea prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+            <TextField GridPane.columnIndex="3" GridPane.rowIndex="1" />
+            <TextField GridPane.columnIndex="3" GridPane.rowIndex="3" />
+            <Button mnemonicParsing="false" text="+" GridPane.columnIndex="4" />
+            <Button mnemonicParsing="false" text="+" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+            <Button mnemonicParsing="false" text="+" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+            <Button mnemonicParsing="false" text="+" GridPane.columnIndex="4" GridPane.rowIndex="3" />
             <Label text="Burrito" />
             <Label text="Fries" GridPane.rowIndex="1" />
             <Label text="Soda" GridPane.rowIndex="2" />
             <Label text="Combo" GridPane.rowIndex="3" />
+            <Label fx:id="burrito" text="\$" GridPane.columnIndex="1" />
+            <Label fx:id="fries" text="\$" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label fx:id="soda" text="\$" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label fx:id="combo" text="\$" GridPane.columnIndex="1" GridPane.rowIndex="3" />
          </children>
       </GridPane>
       <Button fx:id="checkout" mnemonicParsing="false" text="Checkout" />
