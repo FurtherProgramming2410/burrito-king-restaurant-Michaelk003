@@ -107,7 +107,20 @@ public class AddItemsController {
         burrito.setText("$" + Order.getBurritoPrice());
         fries.setText("$" + Order.getFriesPrice());
         soda.setText("$" + Order.getSodaPrice());
-        combo.setText("$" + Order.getComboPrice());
+
+        if (model.getCurrentUser().getVip() == false) {
+            combo.setText("$N/A");
+            incrementcombo.setDisable(true);
+            decrementcombo.setDisable(true);
+            countcombo.setDisable(true);
+
+        } else {
+            combo.setText("$" + Order.getComboPrice());
+            incrementcombo.setDisable(false);
+            decrementcombo.setDisable(false);
+            countcombo.setDisable(false);
+        }
+
     }
 
     private void updateCount(TextField textField, int delta) {
