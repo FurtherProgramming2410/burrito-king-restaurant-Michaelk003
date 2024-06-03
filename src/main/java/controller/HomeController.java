@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -11,6 +12,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.layout.Pane;
 import java.io.IOException;
 import model.Model;
+import model.User;
 
 
 
@@ -32,6 +34,9 @@ public class HomeController {
 	@FXML
 	private Button logout; // Corresponds to the Menu item button "View all orders" in HomeView.fxml
 
+	@FXML
+	private Label Greeting;
+
 	
 	public HomeController(Stage parentStage, Model model) {
 		this.stage = new Stage();
@@ -43,6 +48,9 @@ public class HomeController {
 
 	@FXML
 	public void initialize() {
+
+		setGreeting();
+
 		viewProfile.setOnAction(event -> {
 			try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/ProfileView.fxml"));
@@ -149,6 +157,10 @@ public class HomeController {
 
 	}
 
+
+	private void setGreeting() {
+		Greeting.setText("Welcome! " + model.getCurrentUser().getFirstname());
+	}
 
 	public void showStage(Pane root) {
 		Scene scene = new Scene(root, 500, 300);

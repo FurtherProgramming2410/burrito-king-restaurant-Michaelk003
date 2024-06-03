@@ -21,7 +21,7 @@
             </Menu>
       </menus>
     </MenuBar>
-      <Label id="lblGreeting" text="Hello">
+      <Label fx:id="Greeting" text="Hello">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>

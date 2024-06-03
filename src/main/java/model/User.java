@@ -3,13 +3,19 @@ package model;
 public class User {
 	private String username;
 	private String password;
+	private String firstname;
+	private String lastname;
+	private Boolean vip;
 
 	public User() {
 	}
 	
-	public User(String username, String password) {
+	public User(String username, String password, String firstname, String lastname, Boolean vip) {
 		this.username = username;
 		this.password = password;
+		this.firstname = firstname;
+		this.lastname = lastname;
+		this.vip = vip;
 	}
 
 	public String getUsername() {
@@ -20,6 +26,18 @@ public class User {
 		return password;
 	}
 
+	public String getFirstname() {
+		return firstname;
+	}
+
+	public String getLastname() {
+		return lastname;
+	}
+
+	public Boolean getVip() {
+		return vip;
+	}
+
 	public void setUsername(String username) {
 		this.username = username;
 	}
@@ -27,4 +45,17 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
+	}
+
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
+	}
+
+	public void setVip(Boolean vip) {
+		this.vip = vip;
+	}
+
 }
