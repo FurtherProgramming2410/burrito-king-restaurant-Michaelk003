@@ -7,10 +7,18 @@ public class Order {
     private static double sodaPrice = 2.50;
     private static double comboPrice = burritoPrice + friesPrice + sodaPrice - 3;
 
-    private int burritoQuantity;
-    private int friesQuantity;
-    private int sodaQuantity;
-    private int comboQuantity;
+    private static Integer burritoQuantity;
+    private static Integer friesQuantity;
+    private static Integer sodaQuantity;
+    private static Integer comboQuantity;
+
+    private static double total;
+
+    private static double burritoTotal;
+    private static double friesTotal;
+    private static double sodaTotal;
+    private static double comboTotal;
+
 
     public Order(Integer burritoQuantity, Integer friesQuantity, Integer sodaQuantity, Integer comboQuantity) {
         this.burritoQuantity = burritoQuantity ;
@@ -37,19 +45,19 @@ public class Order {
         return comboPrice;
     }
 
-    public int getBurritoQuantity() {
+    public static int getBurritoQuantity() {
         return burritoQuantity;
     }
 
-    public int getFriesQuantity() {
+    public static int getFriesQuantity() {
         return friesQuantity;
     }
 
-    public int getSodaQuantity() {
+    public static int getSodaQuantity() {
         return sodaQuantity;
     }
 
-    public int getComboQuantity() {
+    public static int getComboQuantity() {
         return comboQuantity;
     }
 
@@ -68,6 +76,33 @@ public class Order {
     public void setComboQuantity(int comboQuantity) {
         this.comboQuantity = comboQuantity;
     }
+
+    public static double getTotal() {
+        total = burritoTotal + friesTotal + sodaTotal + comboTotal;
+        return total;
+    }
+
+    public static double getBurritoTotal() {
+        burritoTotal = burritoPrice * burritoQuantity;
+        return burritoTotal;
+    }
+
+    public static double getFriesTotal() {
+        friesTotal = friesPrice * friesQuantity;
+        return friesTotal;
+    }
+
+    public static double getSodaTotal() {
+        sodaTotal = sodaPrice * sodaQuantity;
+        return sodaTotal;
+    }
+
+    public static double getComboTotal() {
+        comboTotal = comboPrice * comboQuantity;
+        return comboTotal;
+    }
+
+
 
 
 

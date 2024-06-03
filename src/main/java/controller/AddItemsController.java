@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 import model.Model;
 import model.Order;
 
+import javax.swing.*;
 import java.io.IOException;
 
 public class AddItemsController {
@@ -90,16 +91,34 @@ public class AddItemsController {
         setupTextFieldValidation(countcombo);
 
         checkout.setOnAction(event -> {
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/CheckoutView.fxml"));
-                CheckoutController checkoutController = new CheckoutController(stage, model);
-                loader.setController(checkoutController);
-                VBox pane = loader.load();
-                stage.hide();
-                checkoutController.showStage(pane);
-            } catch (IOException e) {
-                e.printStackTrace();
+
+            if (countburrito.getText().equals("0") && countfries.getText().equals("0") && countsoda.getText().equals("0") && countcombo.getText().equals("0")) {
+
+                JOptionPane.showMessageDialog(null, "Order is empty");
+
             }
+
+            else {
+                order.setBurritoQuantity(Integer.parseInt(countburrito.getText()));
+                order.setFriesQuantity(Integer.parseInt(countfries.getText()));
+                order.setSodaQuantity(Integer.parseInt(countsoda.getText()));
+                order.setComboQuantity(Integer.parseInt(countcombo.getText()));
+
+
+
+                try {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/CheckoutView.fxml"));
+                    CheckoutController checkoutController = new CheckoutController(stage, model);
+                    loader.setController(checkoutController);
+                    VBox pane = loader.load();
+                    stage.hide();
+                    checkoutController.showStage(pane);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+            }
+
         });
     }
 
