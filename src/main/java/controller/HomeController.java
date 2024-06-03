@@ -159,7 +159,7 @@ public class HomeController {
 
 
 	private void setGreeting() {
-		Greeting.setText("Welcome! " + model.getCurrentUser().getFirstname());
+		Greeting.setText("Welcome! " + model.getCurrentUser().getFirstname() + " " + model.getCurrentUser().getLastname());
 	}
 
 	public void showStage(Pane root) {

@@ -2,7 +2,6 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -26,18 +25,17 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button mnemonicParsing="false" text="-" GridPane.columnIndex="2" />
-            <Button mnemonicParsing="false" text="-" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-            <Button mnemonicParsing="false" text="-" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-            <Button mnemonicParsing="false" text="-" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-            <TextField GridPane.columnIndex="3" />
-            <TextArea prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-            <TextField GridPane.columnIndex="3" GridPane.rowIndex="1" />
-            <TextField GridPane.columnIndex="3" GridPane.rowIndex="3" />
-            <Button mnemonicParsing="false" text="+" GridPane.columnIndex="4" />
-            <Button mnemonicParsing="false" text="+" GridPane.columnIndex="4" GridPane.rowIndex="1" />
-            <Button mnemonicParsing="false" text="+" GridPane.columnIndex="4" GridPane.rowIndex="2" />
-            <Button mnemonicParsing="false" text="+" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+            <Button fx:id="decrementburrito" mnemonicParsing="false" text="-" GridPane.columnIndex="2" />
+            <Button fx:id="decrementfries" mnemonicParsing="false" text="-" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <Button fx:id="decrementsoda" mnemonicParsing="false" text="-" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <Button fx:id="decrementcombo" mnemonicParsing="false" text="-" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+            <TextField fx:id="countburrito" alignment="CENTER" text="0" GridPane.columnIndex="3" />
+            <TextField fx:id="countfries" alignment="CENTER" text="0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+            <TextField fx:id="countcombo" alignment="CENTER" text="0" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+             <Button fx:id="incrementburrito" mnemonicParsing="false" text="+" GridPane.columnIndex="4" />
+             <Button fx:id="incrementfries" mnemonicParsing="false" text="+" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+             <Button fx:id="incrementsoda" mnemonicParsing="false" text="+" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+             <Button fx:id="incrementcombo" mnemonicParsing="false" text="+" GridPane.columnIndex="4" GridPane.rowIndex="3" />
             <Label text="Burrito" />
             <Label text="Fries" GridPane.rowIndex="1" />
             <Label text="Soda" GridPane.rowIndex="2" />
@@ -46,6 +44,7 @@
             <Label fx:id="fries" text="\$" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Label fx:id="soda" text="\$" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <Label fx:id="combo" text="\$" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="countsoda" alignment="CENTER" text="0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
          </children>
       </GridPane>
       <Button fx:id="checkout" mnemonicParsing="false" text="Checkout" />
