@@ -27,4 +27,30 @@ public class Model {
 	public void setCurrentUser(User user) {
 		currentUser = user;
 	}
+
+	public void updatePassword(String newPassword) throws SQLException {
+		if (currentUser != null) {
+			userDao.updatePassword(currentUser.getUsername(), newPassword);
+			currentUser.setPassword(newPassword); // Update the password in the model
+		}
+
+	}
+
+	public void updateFirstname(String newFirstname) throws SQLException {
+		if (currentUser != null) {
+			userDao.updateFirstname(currentUser.getUsername(), newFirstname);
+			currentUser.setFirstname(newFirstname); // Update the password in the model
+		}
+
+	}
+
+	public void updateLastname(String newLastname) throws SQLException {
+		if (currentUser != null) {
+			userDao.updateLastname(currentUser.getUsername(), newLastname);
+			currentUser.setLastname(newLastname); // Update the password in the model
+		}
+
+	}
+
 }
+

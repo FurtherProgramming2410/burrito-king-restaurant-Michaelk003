@@ -74,7 +74,7 @@ public class HomeController {
 		updateProfile.setOnAction(event -> {
 			try {
 				FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/ProfileUpdate.fxml"));
-				ProfileController updateController = new ProfileController(stage, model);
+				ProfileUpdateController updateController = new ProfileUpdateController(stage, model);
 				loader.setController(updateController);
 
 				VBox pane = loader.load();

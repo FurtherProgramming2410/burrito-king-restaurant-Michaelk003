@@ -1,17 +1,17 @@
 package controller;
 
+import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import model.Model;
-import javafx.fxml.FXML;
-import javafx.scene.Scene;
+import model.User;
 
-import javax.swing.*;
 
-public class ProfileController {
+public class ProfileUpdateController {
     private Model model;
     private Stage stage;
     private Stage parentStage;
@@ -28,7 +28,18 @@ public class ProfileController {
     @FXML
     private Label vip;
 
-
+    @FXML
+    private TextField passwordtxt;
+    @FXML
+    private TextField firstnametxt;
+    @FXML
+    private TextField lastnametxt;
+    @FXML
+    private Button passwordbtn;
+    @FXML
+    private Button firstnamebtn;
+    @FXML
+    private Button lastnamebtn;
 
 
 
@@ -36,7 +47,33 @@ public class ProfileController {
     public void initialize() {
         placeData();
 
+        passwordbtn.setOnAction(event -> {
+            try{
+                model.updatePassword(passwordtxt.getText());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+               placeData();
 
+        });
+
+        firstnamebtn.setOnAction(event -> {
+            try{
+                model.updateFirstname(firstnametxt.getText());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            placeData();
+        });
+
+        lastnamebtn.setOnAction(event -> {
+            try{
+                model.updateLastname(lastnametxt.getText());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            placeData();
+        });
 
 
     }
@@ -58,7 +95,7 @@ public class ProfileController {
 
 
 
-    public ProfileController(Stage parentstage, Model model) {
+    public ProfileUpdateController(Stage parentstage, Model model) {
         this.stage = new Stage();
         this.model = model;
         this.parentStage = parentstage;

@@ -33,14 +33,14 @@
             <Label prefHeight="18.0" prefWidth="78.0" text="Last Name:" GridPane.rowIndex="3" />
             <Label fx:id="firstname" prefHeight="18.0" prefWidth="78.0" text="1" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <Label fx:id="lastname" prefHeight="18.0" prefWidth="78.0" text="1" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <TextField id="passwordtxt" promptText="change password" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-            <TextField id="firstnametxt" promptText="change first name" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-            <TextField id="lastnametxt" promptText="change last name" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-            <Button id="passwordbtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Update" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-            <Button id="firstnamebtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Update" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-            <Button id="lastnamebtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Update" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+            <TextField fx:id="passwordtxt" promptText="change password" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <TextField fx:id="firstnametxt" promptText="change first name" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <TextField fx:id="lastnametxt" promptText="change last name" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+            <Button fx:id="passwordbtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false"  text="Update" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+            <Button fx:id="firstnamebtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false"  text="Update" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+            <Button fx:id="lastnamebtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false"  text="Update" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="3" />
             <Label prefHeight="18.0" prefWidth="78.0" text="VIP:" GridPane.rowIndex="4" />
-            <Label  fx:id="vip" prefHeight="18.0" prefWidth="78.0" text="1" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <Label fx:id="vip" prefHeight="18.0" prefWidth="78.0" text="1" GridPane.columnIndex="1" GridPane.rowIndex="4" />
          </children>
       </GridPane>
       <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Upgrade to VIP" textAlignment="CENTER" />
