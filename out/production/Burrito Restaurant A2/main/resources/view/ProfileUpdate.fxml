@@ -43,7 +43,7 @@
             <Label fx:id="vip" prefHeight="18.0" prefWidth="78.0" text="1" GridPane.columnIndex="1" GridPane.rowIndex="4" />
          </children>
       </GridPane>
-      <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Upgrade to VIP" textAlignment="CENTER" />
+      <Button fx:id="vipbtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Upgrade to VIP" textAlignment="CENTER" />
       <Button id="btnGoBack" mnemonicParsing="false" onAction="#goback" text="Go Back" />
    </children>
 </VBox>

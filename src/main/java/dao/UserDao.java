@@ -19,4 +19,6 @@ public interface UserDao {
 
 	User updateFirstname(String username, String newFirstname) throws SQLException;
 	User updateLastname(String username, String newLastname) throws SQLException;
+
+	User updateVip(String username, Boolean newVip) throws SQLException;
 }

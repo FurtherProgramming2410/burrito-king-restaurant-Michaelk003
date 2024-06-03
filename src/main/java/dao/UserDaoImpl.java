@@ -100,6 +100,18 @@ public class UserDaoImpl implements UserDao {
 		return null;
 	}
 
+	@Override
+	public User updateVip(String username, Boolean newVip) throws SQLException {
+		String sql = "UPDATE users SET vip = ? WHERE username = ?";
+		try (Connection connection = Database.getConnection();
+			 PreparedStatement stmt = connection.prepareStatement(sql)) {
+			stmt.setBoolean(1, newVip);
+			stmt.setString(2, username);
+			stmt.executeUpdate();
+		}
+		return null;
+	}
+
 }
 
 

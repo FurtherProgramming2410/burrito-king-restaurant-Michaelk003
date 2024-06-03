@@ -51,6 +51,13 @@ public class Model {
 		}
 
 	}
+	public void updateVip(Boolean newVip) throws SQLException {
+		if (currentUser != null) {
+			userDao.updateVip(currentUser.getUsername(), newVip);
+			currentUser.setVip(newVip); // Update the password in the model
+		}
+
+	}
 
 }
 

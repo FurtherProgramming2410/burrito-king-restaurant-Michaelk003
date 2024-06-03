@@ -8,7 +8,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import model.Model;
+import javafx.scene.control.TextInputDialog;
 import model.User;
+import java.util.Optional;
 
 
 public class ProfileUpdateController {
@@ -40,6 +42,8 @@ public class ProfileUpdateController {
     private Button firstnamebtn;
     @FXML
     private Button lastnamebtn;
+    @FXML
+    private Button vipbtn;
 
 
 
@@ -75,6 +79,33 @@ public class ProfileUpdateController {
             placeData();
         });
 
+        vipbtn.setOnAction(event -> {
+           //message box appears asking for username input
+            TextInputDialog dialog = new TextInputDialog();
+            dialog.setTitle("Enter Email Address");
+            dialog.setHeaderText("Please enter your Email Address:");
+            dialog.setContentText("Input:");
+
+            Optional<String> result = dialog.showAndWait();
+            if (result.isPresent()) {
+                // Handle the input
+
+                try{
+                    model.updateVip(true);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                placeData();
+
+                String userInput = result.get();
+                System.out.println("User input: " + userInput);
+            } else {
+                System.out.println("No input provided");
+            }
+
+
+        });
+
 
     }
 
@@ -87,8 +118,10 @@ public class ProfileUpdateController {
 
         if (model.getCurrentUser().getVip() == false) {
             vip.setText("No");
+            vipbtn.setDisable(false);
         } else {
             vip.setText("Yes");
+            vipbtn.setDisable(true);
         }
 
     }
