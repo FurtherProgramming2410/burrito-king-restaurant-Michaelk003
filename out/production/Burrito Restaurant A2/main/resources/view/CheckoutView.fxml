@@ -8,14 +8,14 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" >
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <GridPane fx:id="gridpane" >
+        <GridPane fx:id="gridpane">
             <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="295.199951171875" minWidth="10.0" prefWidth="172.00000610351563" />
-                <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="551.2000122070312" minWidth="10.0" prefWidth="67.19998779296876" />
-                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="551.2000122070312" minWidth="7.39996337890625" prefWidth="27.20001220703125" />
-                <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="551.2000122070312" minWidth="10.0" prefWidth="149.4" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="295.199951171875" minWidth="10.0" prefWidth="125.80000000000001" />
+                <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="551.2000122070312" minWidth="10.0" prefWidth="97.0000244140625" />
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="551.2000122070312" minWidth="7.39996337890625" prefWidth="20.199975585937494" />
+                <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="551.2000122070312" minWidth="10.0" prefWidth="122.20003662109377" />
                 <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="551.2000122070312" minWidth="10.0" prefWidth="242.99998779296868" />
             </columnConstraints>
             <rowConstraints>
@@ -24,30 +24,33 @@
                 <RowConstraints fx:id="sodaline" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 <RowConstraints fx:id="comboline" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
-                <Label text="Burrito:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
-                <Label text="Fries:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
-                <Label text="Soda:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
-                <Label text="Combo:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
-                <Label text="Total:" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
-                <Label fx:id="burritoprice" text="\$" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
-                <Label fx:id="friesprice" text="\$" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
-                <Label fx:id="sodaprice" text="\$" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
-                <Label fx:id="comboprice" text="\$" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
-                <Label text="x" GridPane.columnIndex="2" GridPane.rowIndex="0"/>
-                <Label text="x" GridPane.columnIndex="2" GridPane.rowIndex="1"/>
-                <Label text="x" GridPane.columnIndex="2" GridPane.rowIndex="2"/>
-                <Label text="x" GridPane.columnIndex="2" GridPane.rowIndex="3"/>
-                <Label fx:id="burritocount" text="0" GridPane.columnIndex="3" GridPane.rowIndex="0"/>
-                <Label fx:id="friescount" text="0" GridPane.columnIndex="3" GridPane.rowIndex="1"/>
-                <Label fx:id="sodacount" text="0" GridPane.columnIndex="3" GridPane.rowIndex="2"/>
-                <Label fx:id="combocount" text="0" GridPane.columnIndex="3" GridPane.rowIndex="3"/>
-                <Label fx:id="burritototal" text="\$" GridPane.columnIndex="4" GridPane.rowIndex="0"/>
-                <Label fx:id="friestotal" text="\$" GridPane.columnIndex="4" GridPane.rowIndex="1"/>
-                <Label fx:id="sodatotal" text="\$" GridPane.columnIndex="4" GridPane.rowIndex="2"/>
-                <Label fx:id="combototal" text="\$" GridPane.columnIndex="4" GridPane.rowIndex="3"/>
-                <Label fx:id="total" text="\$" GridPane.columnIndex="4" GridPane.rowIndex="4"/>
+                <Label text="Burrito:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                <Label text="Fries:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                <Label text="Soda:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                <Label text="Combo:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+                <Label text="Total:" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+                <Label fx:id="burritoprice" text="\$" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                <Label fx:id="friesprice" text="\$" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                <Label fx:id="sodaprice" text="\$" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                <Label fx:id="comboprice" text="\$" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                <Label text="x" GridPane.columnIndex="2" GridPane.rowIndex="0" />
+                <Label text="x" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                <Label text="x" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                <Label text="x" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                <Label fx:id="burritocount" text="0" GridPane.columnIndex="3" GridPane.rowIndex="0" />
+                <Label fx:id="friescount" text="0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                <Label fx:id="sodacount" text="0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                <Label fx:id="combocount" text="0" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                <Label fx:id="burritototal" text="\$" GridPane.columnIndex="4" GridPane.rowIndex="0" />
+                <Label fx:id="friestotal" text="\$" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+                <Label fx:id="sodatotal" text="\$" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+                <Label fx:id="combototal" text="\$" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+                <Label fx:id="total" text="\$" GridPane.columnIndex="4" GridPane.rowIndex="4" />
+            <Label text="Wait Time:" GridPane.rowIndex="5" />
+            <Label fx:id="waittime" text="0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
             </children>
         </GridPane>
         <GridPane>
@@ -59,17 +62,20 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
-                <Label text="Card No:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
-                <Label text="CVC/CVV:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
-                <Label text="EXP:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
-                <TextField GridPane.columnIndex="1" GridPane.rowIndex="0"/>
-                <TextField GridPane.columnIndex="1" GridPane.rowIndex="1"/>
-                <TextField GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+                <Label text="Card No:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                <Label text="CVC/CVV:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                <Label text="EXP:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                <TextField fx:id="cardno" promptText="eg: 1234567812345678" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                <TextField fx:id="cvc" promptText="eg: 123" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                <TextField fx:id="expire" promptText="MM/YY eg: 12/34" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label text="Order Time (24HR):" GridPane.rowIndex="3" />
+            <TextField fx:id="time" promptText="Hour:Minute eg: 14:30" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             </children>
         </GridPane>
-        <Button mnemonicParsing="false" text="Checkout" />
+        <Button fx:id="checkout" mnemonicParsing="false" onAction="#validateAndPlaceOrder" text="Checkout" />
         <Button fx:id="goback" mnemonicParsing="false" onAction="#goback" text="Go Back" />
     </children>
 </VBox>

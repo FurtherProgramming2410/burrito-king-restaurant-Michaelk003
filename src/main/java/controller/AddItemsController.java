@@ -56,6 +56,8 @@ public class AddItemsController {
     @FXML
     private TextField countcombo;
 
+
+
     public AddItemsController(Stage parentstage, Model model) {
         this.stage = new Stage();
         this.model = model;
