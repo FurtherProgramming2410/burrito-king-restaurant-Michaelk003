@@ -59,6 +59,7 @@ public class Model {
 
 	}
 
+	// refresh user details
 	public void refreshCurrentUser() {
 		if (currentUser != null) {
 			String username = currentUser.getUsername();

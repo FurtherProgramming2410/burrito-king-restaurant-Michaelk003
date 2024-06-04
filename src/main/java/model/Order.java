@@ -26,9 +26,11 @@ public class Order {
         this.sodaQuantity = sodaQuantity ;
         this.comboQuantity = comboQuantity; ;
 
-        this.burritoPrice = burritoPrice;
+
     }
 
+
+    // Getters and Setters
     public static double getBurritoPrice() {
         return burritoPrice;
     }

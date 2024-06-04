@@ -8,6 +8,7 @@ public class Database {
 	private static final String DB_URL = "jdbc:sqlite:application.db";
 	private static Connection connection = null;
 
+	// Get a connection to the database
 	public static Connection getConnection() throws SQLException {
 		if (connection == null || connection.isClosed()) {
 			connection = DriverManager.getConnection(DB_URL);
@@ -15,6 +16,7 @@ public class Database {
 		return connection;
 	}
 
+	// Close the connection to the database
 	public static void closeConnection() {
 		if (connection != null) {
 			try {
