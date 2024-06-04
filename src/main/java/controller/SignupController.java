@@ -37,6 +37,8 @@ public class SignupController {
 
 	@FXML
 	public void initialize() {
+
+		// Create a new user
 		createUser.setOnAction(event -> {
 			if (!username.getText().isEmpty() && !password.getText().isEmpty()) {
 				User user;

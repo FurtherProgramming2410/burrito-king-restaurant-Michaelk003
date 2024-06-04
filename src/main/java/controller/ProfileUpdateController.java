@@ -48,6 +48,10 @@ public class ProfileUpdateController {
     public void initialize() {
         placeData();
 
+        //buttons to update user information
+
+
+        // Update the password
         passwordbtn.setOnAction(event -> {
             try{
                 model.updatePassword(passwordtxt.getText());
@@ -58,6 +62,8 @@ public class ProfileUpdateController {
 
         });
 
+
+        // Update the first name
         firstnamebtn.setOnAction(event -> {
             try{
                 model.updateFirstname(firstnametxt.getText());
@@ -67,6 +73,7 @@ public class ProfileUpdateController {
             placeData();
         });
 
+        // Update the last name
         lastnamebtn.setOnAction(event -> {
             try{
                 model.updateLastname(lastnametxt.getText());
@@ -76,6 +83,7 @@ public class ProfileUpdateController {
             placeData();
         });
 
+        // Update the VIP status
         vipbtn.setOnAction(event -> {
             TextInputDialog dialog = new TextInputDialog();
             dialog.setTitle("Enter Email Address");
@@ -103,12 +111,15 @@ public class ProfileUpdateController {
         });
     }
 
+    // Place data in the labels from the database
     public void placeData() {
         username.setText(model.getCurrentUser().getUsername());
         password.setText(model.getCurrentUser().getPassword());
         firstname.setText(model.getCurrentUser().getFirstname());
         lastname.setText(model.getCurrentUser().getLastname());
 
+
+        // If the user is not a VIP, enable the VIP button
         if (model.getCurrentUser().getVip() == false) {
             vip.setText("No");
             vipbtn.setDisable(false);
@@ -141,6 +152,7 @@ public class ProfileUpdateController {
         parentStage.show();
     }
 
+    // Validate the email address
     private boolean isValidEmail(String email) {
         String emailRegex = "^[A-Za-z0-9+_.-]+@(.+)$";
         Pattern pattern = Pattern.compile(emailRegex);

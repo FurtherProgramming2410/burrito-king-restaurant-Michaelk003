@@ -40,7 +40,9 @@ public class LoginController {
 	}
 	
 	@FXML
-	public void initialize() {		
+	public void initialize() {
+
+		// Login to see if the user exists
 		login.setOnAction(event -> {
 			if (!name.getText().isEmpty() && !password.getText().isEmpty()) {
 				User user;
@@ -77,7 +79,8 @@ public class LoginController {
 			name.clear();
 			password.clear();
 		});
-		
+
+		// Go to the signup page
 		signup.setOnAction(event -> {
 			try {
 				FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/SignupView.fxml"));

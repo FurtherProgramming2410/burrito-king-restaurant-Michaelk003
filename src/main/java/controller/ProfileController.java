@@ -44,7 +44,7 @@ public class ProfileController {
         placeData();
     }
     public void placeData() {
-        // Add your code here to set the data in the profile view
+        // sets the data in the profile view
         username.setText( model.getCurrentUser().getUsername());
         password.setText( model.getCurrentUser().getPassword());
         firstname.setText( model.getCurrentUser().getFirstname());

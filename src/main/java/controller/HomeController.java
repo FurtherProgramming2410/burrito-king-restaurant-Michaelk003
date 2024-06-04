@@ -60,13 +60,15 @@ public class HomeController {
 		this.model = model;
 	}
 	
-	// Add your code to complete the functionality of the program
+
 
 	@FXML
 	public void initialize() {
 
 		setGreeting();
 		setPendingOrders();
+
+		//actions for the menu items
 
 		viewProfile.setOnAction(event -> {
 			try {
@@ -182,10 +184,12 @@ public class HomeController {
 	}
 
 
+	//checks database for user's first and last name and displays it in the greeting
 	private void setGreeting() {
 		Greeting.setText("Welcome! " + model.getCurrentUser().getFirstname() + " " + model.getCurrentUser().getLastname());
 	}
 
+	//checks database for user's pending orders and displays them in the listview
 	private void setPendingOrders() {
 		String username = model.getCurrentUser().getUsername();
 		String sql = "SELECT orderNumber, orderCost FROM orders_" + username + " WHERE orderStatus = 'Placed'";
@@ -218,6 +222,7 @@ public class HomeController {
 		stage.show();
 	}
 
+	// Refreshes the data displayed when the user navigates back to the home screen
 	public void refreshData() {
 		// Add code here to refresh the data displayed in the parent stage
 		Greeting.setText("Welcome back, " + model.getCurrentUser().getFirstname() + " " + model.getCurrentUser().getLastname());

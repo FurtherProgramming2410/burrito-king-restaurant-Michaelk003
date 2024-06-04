@@ -78,9 +78,12 @@ public class AddItemsController {
     @FXML
     public void initialize() {
 
+        // Initialize the order object
         Order order = new Order(0, 0, 0, 0);
+        // Load the prices of the items
         loadPrices();
 
+        // buttons to increment and decrement the quantity of items
         decrementburrito.setOnAction(event -> updateCount(countburrito, -1));
         incrementburrito.setOnAction(event -> updateCount(countburrito, 1));
         decrementfries.setOnAction(event -> updateCount(countfries, -1));
@@ -90,19 +93,21 @@ public class AddItemsController {
         decrementcombo.setOnAction(event -> updateCount(countcombo, -1));
         incrementcombo.setOnAction(event -> updateCount(countcombo, 1));
 
+        // Validate the text fields
         setupTextFieldValidation(countburrito);
         setupTextFieldValidation(countfries);
         setupTextFieldValidation(countsoda);
         setupTextFieldValidation(countcombo);
 
+        // Checkout button
         checkout.setOnAction(event -> {
-
+            // Check if the order is empty
             if (countburrito.getText().equals("0") && countfries.getText().equals("0") && countsoda.getText().equals("0") && countcombo.getText().equals("0")) {
 
                 JOptionPane.showMessageDialog(null, "Order is empty");
 
             }
-
+            // If the order is not empty, set the quantities of items in the order class and proceed to the checkout
             else {
                 order.setBurritoQuantity(Integer.parseInt(countburrito.getText()));
                 order.setFriesQuantity(Integer.parseInt(countfries.getText()));
@@ -110,7 +115,7 @@ public class AddItemsController {
                 order.setComboQuantity(Integer.parseInt(countcombo.getText()));
 
 
-
+                // go to checkout
                 try {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/CheckoutView.fxml"));
                     CheckoutController checkoutController = new CheckoutController(stage, model);
@@ -127,6 +132,7 @@ public class AddItemsController {
         });
     }
 
+    // Load the prices of the items
     private void loadPrices() {
         burrito.setText("$" + Order.getBurritoPrice());
         fries.setText("$" + Order.getFriesPrice());
@@ -147,6 +153,8 @@ public class AddItemsController {
 
     }
 
+
+    // Update the quantity of items
     private void updateCount(TextField textField, int delta) {
         try {
             int currentValue = Integer.parseInt(textField.getText());
@@ -157,6 +165,7 @@ public class AddItemsController {
         }
     }
 
+    // Validate the text fields
     private void setupTextFieldValidation(TextField textField) {
         textField.textProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue.matches("\\d*")) {

@@ -56,13 +56,17 @@ public class ExportOrderController {
 
     @FXML
     public void initialize() {
+        // Load orders from the database
         loadOrders();
         orderListView.setItems(orders);
 
+        //button to browse file destination
         browseButton.setOnAction(event -> browseFileDestination());
+        //button to export orders
         exportButton.setOnAction(event -> exportOrders());
     }
 
+    // Load orders from the database
     private void loadOrders() {
         String username = model.getCurrentUser().getUsername();
         String sql = "SELECT orderNumber, orderStatus, orderCost, orderTime, prepTime, collectionTime FROM orders_" + username;
@@ -90,6 +94,7 @@ public class ExportOrderController {
         }
     }
 
+    // Browse file destination
     private void browseFileDestination() {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Save CSV File");
@@ -100,6 +105,7 @@ public class ExportOrderController {
         }
     }
 
+    // Export selected orders to a CSV file
     private void exportOrders() {
         List<OrderData> selectedOrders = new ArrayList<>();
         for (OrderData orderData : orderDataList) {
@@ -107,18 +113,18 @@ public class ExportOrderController {
                 selectedOrders.add(orderData);
             }
         }
-
+        // Check if any orders are selected
         if (selectedOrders.isEmpty()) {
             showAlert("No Orders Selected", "Please select orders to export.");
             return;
         }
-
+        // Check if a file path is provided
         String filePath = filePathField.getText();
         if (filePath.isEmpty()) {
             showAlert("No File Path", "Please select a file destination.");
             return;
         }
-
+        // Export orders to the CSV file
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
             writer.write("Order Number,Order Status,Order Cost,Order Time,Preparation Time,Collection Time");
             writer.newLine();
@@ -149,6 +155,8 @@ public class ExportOrderController {
         parentStage.show();
     }
 
+    // Order data class
+
     public static class OrderData {
         private final int orderNumber;
         private final String orderStatus;
@@ -171,6 +179,8 @@ public class ExportOrderController {
         public CheckBox getCheckBox() {
             return checkBox;
         }
+
+        // Convert order data to CSV format
 
         public String toCSV() {
             return orderNumber + "," + orderStatus + "," + orderCost + "," + orderTime + "," + prepTime + "," + collectionTime;

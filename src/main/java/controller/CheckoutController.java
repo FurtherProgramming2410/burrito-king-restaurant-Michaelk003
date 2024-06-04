@@ -81,29 +81,33 @@ public class CheckoutController {
 
     @FXML
     public void initialize() {
+        // set the values of the labels
         setValues();
+        // check if the user is a VIP
         checkVIPStatus();
+        // calculate the preparation time
         PreparationSummary(Order.getFriesQuantity(), Order.getBurritoQuantity(), Order.getComboQuantity());
     }
 
     public void setValues() {
+       // set the values of the pricing labels
         burritoprice.setText("$" + Order.getBurritoPrice());
         friesprice.setText("$" + Order.getFriesPrice());
         sodaprice.setText("$" + Order.getSodaPrice());
         comboprice.setText("$" + Order.getComboPrice());
-
+// set the values of the quantity labels
         burritocount.setText(String.valueOf(Order.getBurritoQuantity()));
         friescount.setText(String.valueOf(Order.getFriesQuantity()));
         sodacount.setText(String.valueOf(Order.getSodaQuantity()));
         combocount.setText(String.valueOf(Order.getComboQuantity()));
-
+// set the values of the total labels
         burritototal.setText("$" + Order.getBurritoTotal());
         friestotal.setText("$" + Order.getFriesTotal());
         sodatotal.setText("$" + Order.getSodaTotal());
         combototal.setText("$" + Order.getComboTotal());
 
         total.setText("$" + Order.getTotal());
-
+// hide the rows if the quantity is 0
         if (Order.getBurritoQuantity() == 0) {
             hideRow(0);
         }
@@ -117,7 +121,7 @@ public class CheckoutController {
             hideRow(3);
         }
     }
-
+//function to hide the rows
     private void hideRow(int rowIndex) {
         gridpane.getRowConstraints().get(rowIndex).setMinHeight(0);
         gridpane.getRowConstraints().get(rowIndex).setPrefHeight(0);
@@ -151,6 +155,7 @@ public class CheckoutController {
         parentStage.show();
     }
 
+    //function to calculate the preparation time
     public void PreparationSummary(int orderedFries, int orderedBurritos, int orderedCombo) {
         int friesPerBatch = 5;
         int friesBatches = 0;
@@ -174,7 +179,7 @@ public class CheckoutController {
             prepTime = waitTime;
         }
     }
-
+//function to check if the user is a VIP
     private void checkVIPStatus() {
         if (model.getCurrentUser().isVip()) {
             credits.setText(String.valueOf(model.getCurrentUser().getCredits()));
@@ -185,6 +190,7 @@ public class CheckoutController {
         }
     }
 
+    //function to validate and place the order
     @FXML
     public void validateAndPlaceOrder() {
         String cardNumber = cardno.getText();
@@ -231,16 +237,18 @@ public class CheckoutController {
         }
     }
 
+    //function to create the order in the database
     private void createOrderInDatabase(String username, double finalOrderCost, String orderTime, int prepTime) throws SQLException {
         model.getUserDao().createOrder(username, finalOrderCost, orderTime, prepTime);
     }
 
+    //function to update the user's credits
     private void updateUserCredits(String username, int usedCredits, double orderCost) throws SQLException {
         int earnedCredits = (int) orderCost;
         int newCreditBalance = model.getCurrentUser().getCredits() - usedCredits + earnedCredits;
         model.getUserDao().updateUserCredits(username, newCreditBalance);
     }
-
+//functions to validate the user inputs
     private boolean isValidCardNumber(String cardNumber) {
         return cardNumber.matches("\\d{16}");
     }

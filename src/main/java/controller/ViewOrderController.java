@@ -56,6 +56,8 @@ public class ViewOrderController {
 
     @FXML
     public void initialize() {
+
+        // Load orders from the database
         list.setItems(orders);
 
         list.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
@@ -64,17 +66,20 @@ public class ViewOrderController {
                 displayOrderDetails(selectedOrder);
             }
         });
-
+        // Load orders based on status
         pending.setOnAction(event -> loadOrders("Placed"));
         finalised.setOnAction(event -> loadOrders("Finalised"));
         all.setOnAction(event -> loadOrders(null));
 
+
+        //buttons to cancel and pickup orders
         cancel.setOnAction(event -> updateOrderStatus("Cancelled", null));
         pickup.setOnAction(event -> handlePickupOrder());
 
         loadOrders(null);
     }
 
+    // Load orders from the database
     private void loadOrders(String status) {
         orders.clear();
         String username = model.getCurrentUser().getUsername();
@@ -101,6 +106,7 @@ public class ViewOrderController {
         }
     }
 
+    // Display order details in the text field
     private void displayOrderDetails(String order) {
         String username = model.getCurrentUser().getUsername();
         int orderNumber = Integer.parseInt(order.split(" ")[1].substring(1));
@@ -131,6 +137,8 @@ public class ViewOrderController {
         }
     }
 
+    // Update the order status in the database
+
     private void updateOrderStatus(String status, String collectionTime) {
         if (selectedOrder == null) {
             JOptionPane.showMessageDialog(null, "No order selected");
@@ -153,6 +161,7 @@ public class ViewOrderController {
         }
     }
 
+    // Handle the pickup order button
     private void handlePickupOrder() {
         if (selectedOrder == null) {
             JOptionPane.showMessageDialog(null, "No order selected");
