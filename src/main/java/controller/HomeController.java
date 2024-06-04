@@ -1,18 +1,29 @@
 package controller;
 
+import dao.Database;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
+import javafx.scene.control.MenuItem;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import javafx.scene.control.MenuItem;
-import javafx.scene.layout.Pane;
-import java.io.IOException;
 import model.Model;
 import model.User;
+
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 
 
@@ -37,6 +48,9 @@ public class HomeController {
 	@FXML
 	private Label Greeting;
 
+	@FXML
+	private ListView<String> pendingorders;
+
 	
 	public HomeController(Stage parentStage, Model model) {
 		this.stage = new Stage();
@@ -50,6 +64,7 @@ public class HomeController {
 	public void initialize() {
 
 		setGreeting();
+		setPendingOrders();
 
 		viewProfile.setOnAction(event -> {
 			try {
@@ -160,6 +175,30 @@ public class HomeController {
 
 	private void setGreeting() {
 		Greeting.setText("Welcome! " + model.getCurrentUser().getFirstname() + " " + model.getCurrentUser().getLastname());
+	}
+
+	private void setPendingOrders() {
+		String username = model.getCurrentUser().getUsername();
+		String sql = "SELECT orderNumber, orderCost FROM orders_" + username + " WHERE orderStatus = 'Placed'";
+
+		List<String> orders = new ArrayList<>();
+
+		try (Connection connection = Database.getConnection();
+			 PreparedStatement stmt = connection.prepareStatement(sql);
+			 ResultSet rs = stmt.executeQuery()) {
+
+			while (rs.next()) {
+				int orderNumber = rs.getInt("orderNumber");
+				double orderCost = rs.getDouble("orderCost");
+				orders.add("Order #" + orderNumber + " - $" + orderCost);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		ObservableList<String> observableOrders = FXCollections.observableArrayList(orders);
+		pendingorders.setItems(observableOrders);
 	}
 
 	public void showStage(Pane root) {
