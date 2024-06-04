@@ -70,4 +70,7 @@ public class User {
 		this.credits = credits;
 	}
 
+    public boolean isVip() {
+		return vip;
+    }
 }

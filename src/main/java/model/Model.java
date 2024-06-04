@@ -59,5 +59,18 @@ public class Model {
 
 	}
 
+	public void refreshCurrentUser() {
+		if (currentUser != null) {
+			String username = currentUser.getUsername();
+			try {
+				currentUser = userDao.getUser(username, currentUser.getPassword());
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+
+		}
+
+	}
+
 }
 

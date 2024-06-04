@@ -36,13 +36,13 @@ public class ProfileController {
 
     @FXML
     public void initialize() {
-        placeData();
-
-
-
-
+        refreshAndPlaceData();
     }
 
+    public void refreshAndPlaceData() {
+        model.refreshCurrentUser();  // Refresh user data from the database
+        placeData();
+    }
     public void placeData() {
         // Add your code here to set the data in the profile view
         username.setText( model.getCurrentUser().getUsername());

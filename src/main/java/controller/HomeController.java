@@ -79,7 +79,9 @@ public class HomeController {
 			stage.hide();
 
 			// Use the profileController instance to call showStage
-			profileController.showStage(pane);
+
+				profileController.showStage(pane);
+				profileController.refreshAndPlaceData();
 
 			} catch (IOException e) {
 				// Handle the IOException properly

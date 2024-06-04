@@ -2,16 +2,14 @@ package controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import model.Model;
-import javafx.scene.control.TextInputDialog;
 import model.User;
 import java.util.Optional;
-
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
 
 public class ProfileUpdateController {
     private Model model;
@@ -19,7 +17,6 @@ public class ProfileUpdateController {
     private Stage parentStage;
 
     private HomeController parentController; // Reference to the parent controller
-
 
     @FXML
     private Label username;
@@ -47,8 +44,6 @@ public class ProfileUpdateController {
     @FXML
     private Button vipbtn;
 
-
-
     @FXML
     public void initialize() {
         placeData();
@@ -59,7 +54,7 @@ public class ProfileUpdateController {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-               placeData();
+            placeData();
 
         });
 
@@ -82,7 +77,6 @@ public class ProfileUpdateController {
         });
 
         vipbtn.setOnAction(event -> {
-           //message box appears asking for username input
             TextInputDialog dialog = new TextInputDialog();
             dialog.setTitle("Enter Email Address");
             dialog.setHeaderText("Please enter your Email Address:");
@@ -90,33 +84,30 @@ public class ProfileUpdateController {
 
             Optional<String> result = dialog.showAndWait();
             if (result.isPresent()) {
-                // Handle the input
-
-                try{
-                    model.updateVip(true);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                placeData();
-
                 String userInput = result.get();
-                System.out.println("User input: " + userInput);
+                if (isValidEmail(userInput)) {
+                    try {
+                        model.updateVip(true);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    placeData();
+
+                    System.out.println("User input: " + userInput);
+                } else {
+                    showAlert("Invalid Email", "Please enter a valid email address.");
+                }
             } else {
                 System.out.println("No input provided");
             }
-
-
         });
-
-
     }
 
     public void placeData() {
-        // Add your code here to set the data in the profile view
-        username.setText( model.getCurrentUser().getUsername());
-        password.setText( model.getCurrentUser().getPassword());
-        firstname.setText( model.getCurrentUser().getFirstname());
-        lastname.setText( model.getCurrentUser().getLastname());
+        username.setText(model.getCurrentUser().getUsername());
+        password.setText(model.getCurrentUser().getPassword());
+        firstname.setText(model.getCurrentUser().getFirstname());
+        lastname.setText(model.getCurrentUser().getLastname());
 
         if (model.getCurrentUser().getVip() == false) {
             vip.setText("No");
@@ -125,10 +116,7 @@ public class ProfileUpdateController {
             vip.setText("Yes");
             vipbtn.setDisable(true);
         }
-
     }
-
-
 
     public ProfileUpdateController(Stage parentstage, Model model, HomeController parentController) {
         this.stage = new Stage();
@@ -147,15 +135,24 @@ public class ProfileUpdateController {
 
     @FXML
     public void goback() {
-
         // Refresh data in the parent controller
         parentController.refreshData();
-
         stage.close();
         parentStage.show();
     }
 
+    private boolean isValidEmail(String email) {
+        String emailRegex = "^[A-Za-z0-9+_.-]+@(.+)$";
+        Pattern pattern = Pattern.compile(emailRegex);
+        Matcher matcher = pattern.matcher(email);
+        return matcher.matches();
+    }
+
+    private void showAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
 }
-
-
-

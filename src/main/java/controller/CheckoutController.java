@@ -74,33 +74,35 @@ public class CheckoutController {
     private TextField time;
     @FXML
     private Label waittime;
-
-
+    @FXML
+    private Label credits;
+    @FXML
+    private TextField creditstxt;
 
     @FXML
     public void initialize() {
         setValues();
-        PreparationSummary(Order.getFriesQuantity(),Order.getBurritoQuantity(),Order.getComboQuantity());
-
+        checkVIPStatus();
+        PreparationSummary(Order.getFriesQuantity(), Order.getBurritoQuantity(), Order.getComboQuantity());
     }
 
     public void setValues() {
-        burritoprice.setText("$"+ Order.getBurritoPrice());
-        friesprice.setText("$"+ Order.getFriesPrice());
-        sodaprice.setText("$"+ Order.getSodaPrice());
-        comboprice.setText("$"+ Order.getComboPrice());
+        burritoprice.setText("$" + Order.getBurritoPrice());
+        friesprice.setText("$" + Order.getFriesPrice());
+        sodaprice.setText("$" + Order.getSodaPrice());
+        comboprice.setText("$" + Order.getComboPrice());
 
         burritocount.setText(String.valueOf(Order.getBurritoQuantity()));
         friescount.setText(String.valueOf(Order.getFriesQuantity()));
         sodacount.setText(String.valueOf(Order.getSodaQuantity()));
         combocount.setText(String.valueOf(Order.getComboQuantity()));
 
-        burritototal.setText("$"+ String.valueOf(Order.getBurritoTotal()));
-        friestotal.setText("$"+ String.valueOf(Order.getFriesTotal()));
-        sodatotal.setText("$"+ String.valueOf(Order.getSodaTotal()));
-        combototal.setText("$"+ String.valueOf(Order.getComboTotal()));
+        burritototal.setText("$" + Order.getBurritoTotal());
+        friestotal.setText("$" + Order.getFriesTotal());
+        sodatotal.setText("$" + Order.getSodaTotal());
+        combototal.setText("$" + Order.getComboTotal());
 
-        total.setText("$"+ String.valueOf(Order.getTotal()));
+        total.setText("$" + Order.getTotal());
 
         if (Order.getBurritoQuantity() == 0) {
             hideRow(0);
@@ -117,12 +119,10 @@ public class CheckoutController {
     }
 
     private void hideRow(int rowIndex) {
-        // Set the height of the row to 0
         gridpane.getRowConstraints().get(rowIndex).setMinHeight(0);
         gridpane.getRowConstraints().get(rowIndex).setPrefHeight(0);
         gridpane.getRowConstraints().get(rowIndex).setMaxHeight(0);
 
-        // Make all nodes in the specified row invisible
         gridpane.getChildren().forEach(node -> {
             Integer row = GridPane.getRowIndex(node);
             if (row != null && row == rowIndex) {
@@ -152,35 +152,38 @@ public class CheckoutController {
     }
 
     public void PreparationSummary(int orderedFries, int orderedBurritos, int orderedCombo) {
-        // Assuming the batches of fries are made up of 5 fries each
         int friesPerBatch = 5;
         int friesBatches = 0;
         int friesTime = 0;
         int burritoBatches = 0;
         int burritoTime = 0;
 
-        //each ordered combo is 1 fries and 1 burrito, therfore we need to calculate the time for both so they are added to the total time for fries and burrito
-
-        // Calculate time for fries
         if (orderedFries + orderedCombo > 0) {
             friesBatches = (int) Math.ceil((double) ((orderedFries + orderedCombo) / friesPerBatch));
-            friesTime = friesBatches * 8; // 8 minutes per batch
+            friesTime = friesBatches * 8;
         }
 
-        // Calculate time for burritos
         if (orderedBurritos + orderedCombo > 0) {
-            burritoBatches = (int) Math.ceil((orderedBurritos + orderedCombo) / 2.0); // 2 burritos per batch
-            burritoTime = burritoBatches * 9; // 9 minutes per batch
+            burritoBatches = (int) Math.ceil((orderedBurritos + orderedCombo) / 2.0);
+            burritoTime = burritoBatches * 9;
         }
 
-        // Print the expected wait time
-        if (burritoTime > 0 || friesTime > 0) { // print wait time if any burritos are ordered or if there is a wait time for fries
+        if (burritoTime > 0 || friesTime > 0) {
             int waitTime = Math.max(burritoTime, friesTime);
-           waittime.setText( waitTime + " minutes");
-           prepTime = waitTime;
+            waittime.setText(waitTime + " minutes");
+            prepTime = waitTime;
         }
     }
 
+    private void checkVIPStatus() {
+        if (model.getCurrentUser().isVip()) {
+            credits.setText(String.valueOf(model.getCurrentUser().getCredits()));
+            creditstxt.setDisable(false);
+        } else {
+            credits.setText("Unavailable");
+            creditstxt.setDisable(true);
+        }
+    }
 
     @FXML
     public void validateAndPlaceOrder() {
@@ -188,6 +191,7 @@ public class CheckoutController {
         String cvcCode = cvc.getText();
         String expiryDate = expire.getText();
         String orderTime = time.getText();
+        int usedCredits = creditstxt.getText().isEmpty() ? 0 : Integer.parseInt(creditstxt.getText());
 
         if (!isValidCardNumber(cardNumber)) {
             showAlert("Invalid Card Number", "The card number must be 16 digits.");
@@ -209,22 +213,32 @@ public class CheckoutController {
             return;
         }
 
-        // Insert order into the database
-        try {
-            double orderCost = Double.parseDouble(total.getText().replace("$", ""));
-            String username = model.getCurrentUser().getUsername();
-            createOrderInDatabase(username, orderCost, orderTime, prepTime);
+        double orderCost = Double.parseDouble(total.getText().replace("$", ""));
+        double finalOrderCost = orderCost - (usedCredits / 100.0);
 
+        if (usedCredits > model.getCurrentUser().getCredits()) {
+            showAlert("Invalid Credits", "You do not have enough credits.");
+            return;
+        }
+
+        try {
+            String username = model.getCurrentUser().getUsername();
+            createOrderInDatabase(username, finalOrderCost, orderTime, prepTime);
+            updateUserCredits(username, usedCredits, orderCost);
             showAlert("Order Placed", "Your order has been placed successfully!");
         } catch (SQLException e) {
             showAlert("Database Error", "There was an error placing your order. Please try again.");
         }
-
-
     }
 
-    private void createOrderInDatabase(String username, double orderCost, String orderTime, int prepTime) throws SQLException {
-        model.getUserDao().createOrder(username, orderCost, orderTime, prepTime);
+    private void createOrderInDatabase(String username, double finalOrderCost, String orderTime, int prepTime) throws SQLException {
+        model.getUserDao().createOrder(username, finalOrderCost, orderTime, prepTime);
+    }
+
+    private void updateUserCredits(String username, int usedCredits, double orderCost) throws SQLException {
+        int earnedCredits = (int) orderCost;
+        int newCreditBalance = model.getCurrentUser().getCredits() - usedCredits + earnedCredits;
+        model.getUserDao().updateUserCredits(username, newCreditBalance);
     }
 
     private boolean isValidCardNumber(String cardNumber) {
