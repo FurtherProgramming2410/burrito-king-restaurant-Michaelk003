@@ -1,0 +1,3 @@
+Order Number,Order Status,Order Cost,Order Time,Preparation Time,Collection Time
+1,Cancelled,27.5,12:30,18,null
+2,Collected,7.0,13:13,9,null
