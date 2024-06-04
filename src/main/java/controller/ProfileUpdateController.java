@@ -18,6 +18,8 @@ public class ProfileUpdateController {
     private Stage stage;
     private Stage parentStage;
 
+    private HomeController parentController; // Reference to the parent controller
+
 
     @FXML
     private Label username;
@@ -128,10 +130,11 @@ public class ProfileUpdateController {
 
 
 
-    public ProfileUpdateController(Stage parentstage, Model model) {
+    public ProfileUpdateController(Stage parentstage, Model model, HomeController parentController) {
         this.stage = new Stage();
         this.model = model;
         this.parentStage = parentstage;
+        this.parentController = parentController; // Assign the parent controller
     }
 
     public void showStage(VBox pane) {
@@ -145,11 +148,14 @@ public class ProfileUpdateController {
     @FXML
     public void goback() {
 
+        // Refresh data in the parent controller
+        parentController.refreshData();
+
         stage.close();
         parentStage.show();
-        }
-
     }
+
+}
 
 
 

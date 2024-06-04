@@ -19,6 +19,8 @@ public class AddItemsController {
     private Stage stage;
     private Stage parentStage;
 
+    private HomeController parentController; // Reference to the parent controller
+
     @FXML
     private Button checkout;
     @FXML
@@ -58,10 +60,11 @@ public class AddItemsController {
 
 
 
-    public AddItemsController(Stage parentstage, Model model) {
+    public AddItemsController(Stage parentstage, Model model,HomeController parentController) {
         this.stage = new Stage();
         this.model = model;
         this.parentStage = parentstage;
+        this.parentController = parentController; // Assign the parent controller
     }
 
     public void showStage(VBox pane) {
@@ -164,6 +167,9 @@ public class AddItemsController {
 
     @FXML
     public void goback() {
+
+        // Refresh data in the parent controller
+        parentController.refreshData();
 
         stage.close();
         parentStage.show();

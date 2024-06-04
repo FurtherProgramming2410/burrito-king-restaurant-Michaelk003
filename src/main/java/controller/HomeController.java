@@ -89,7 +89,7 @@ public class HomeController {
 		updateProfile.setOnAction(event -> {
 			try {
 				FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/ProfileUpdate.fxml"));
-				ProfileUpdateController updateController = new ProfileUpdateController(stage, model);
+				ProfileUpdateController updateController = new ProfileUpdateController(stage, model, this);
 				loader.setController(updateController);
 
 				VBox pane = loader.load();
@@ -146,7 +146,7 @@ public class HomeController {
 		additems.setOnAction(event -> {
 			try {
 				FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/OrderView.fxml"));
-				AddItemsController addItemsController = new AddItemsController(stage, model);
+				AddItemsController addItemsController = new AddItemsController(stage, model,this);
 				loader.setController(addItemsController);
 
 				VBox pane = loader.load();
@@ -207,5 +207,12 @@ public class HomeController {
 		stage.setResizable(false);
 		stage.setTitle("Home");
 		stage.show();
+	}
+
+	public void refreshData() {
+		// Add code here to refresh the data displayed in the parent stage
+		Greeting.setText("Welcome back, " + model.getCurrentUser().getFirstname() + " " + model.getCurrentUser().getLastname());
+		setPendingOrders();
+		// Refresh other components if necessary
 	}
 }
