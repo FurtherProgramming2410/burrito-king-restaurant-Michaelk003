@@ -15,6 +15,8 @@ import javafx.stage.Stage;
 import model.Model;
 import model.User;
 
+
+
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -108,7 +110,7 @@ public class HomeController {
 		vieworder.setOnAction(event -> {
 			try {
 				FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/OrderHistoryView.fxml"));
-				ViewOrderController viewOrdersController = new ViewOrderController(stage, model);
+				ViewOrderController viewOrdersController = new ViewOrderController(stage, model, this);
 				loader.setController(viewOrdersController);
 
 				VBox pane = loader.load();
@@ -164,6 +166,11 @@ public class HomeController {
 
 		logout.setOnAction(event -> {
 			stage.hide();
+			//close connection to sql database
+			Database.closeConnection();
+
+
+
 			parentStage.show();
 		});
 
