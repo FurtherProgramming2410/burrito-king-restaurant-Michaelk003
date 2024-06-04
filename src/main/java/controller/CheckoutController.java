@@ -14,6 +14,7 @@ import javafx.stage.Stage;
 import model.Model;
 import model.Order;
 
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -23,6 +24,8 @@ public class CheckoutController {
     private Model model;
     private Stage stage;
     private Stage parentStage;
+
+    private int prepTime = 0;
 
     @FXML
     private Label total;
@@ -174,6 +177,7 @@ public class CheckoutController {
         if (burritoTime > 0 || friesTime > 0) { // print wait time if any burritos are ordered or if there is a wait time for fries
             int waitTime = Math.max(burritoTime, friesTime);
            waittime.setText( waitTime + " minutes");
+           prepTime = waitTime;
         }
     }
 
@@ -205,7 +209,22 @@ public class CheckoutController {
             return;
         }
 
-        showAlert("Order Placed", "Your order has been placed successfully!");
+        // Insert order into the database
+        try {
+            double orderCost = Double.parseDouble(total.getText().replace("$", ""));
+            String username = model.getCurrentUser().getUsername();
+            createOrderInDatabase(username, orderCost, orderTime, prepTime);
+
+            showAlert("Order Placed", "Your order has been placed successfully!");
+        } catch (SQLException e) {
+            showAlert("Database Error", "There was an error placing your order. Please try again.");
+        }
+
+
+    }
+
+    private void createOrderInDatabase(String username, double orderCost, String orderTime, int prepTime) throws SQLException {
+        model.getUserDao().createOrder(username, orderCost, orderTime, prepTime);
     }
 
     private boolean isValidCardNumber(String cardNumber) {

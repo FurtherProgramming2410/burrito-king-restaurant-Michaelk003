@@ -51,8 +51,19 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public User createUser(String username, String password) throws SQLException {
 		String sql = "INSERT INTO " + TABLE_NAME + " VALUES (?, ?, ?, ?, ?, ?)";
+
+		String orderTableSql = "CREATE TABLE IF NOT EXISTS orders_" + username + " ("
+				+ "orderNumber INTEGER PRIMARY KEY AUTOINCREMENT, "
+				+ "orderStatus TEXT DEFAULT 'Placed', "
+				+ "orderCost REAL, "
+				+ "orderTime TEXT, "
+				+ "prepTime INTEGER, "
+				+ "collectionTime TEXT DEFAULT NULL"
+				+ ")";
 		try (Connection connection = Database.getConnection();
-				PreparedStatement stmt = connection.prepareStatement(sql);) {
+				PreparedStatement stmt = connection.prepareStatement(sql);
+			 Statement orderTableStmt = connection.createStatement())
+		{
 			stmt.setString(1, username);
 			stmt.setString(2, password);
 			stmt.setString(3, "Firstname");
@@ -62,7 +73,26 @@ public class UserDaoImpl implements UserDao {
 
 
 			stmt.executeUpdate();
+
+			// Create orders table for the user
+			orderTableStmt.execute(orderTableSql);
+
 			return new User(username, password, "Firstname", "Lastname", false, 0);
+		}
+	}
+
+	@Override
+	public void createOrder(String username, double orderCost, String orderTime, int prepTime) throws SQLException {
+		String sql = "INSERT INTO orders_" + username + " (orderCost, orderTime, prepTime) VALUES (?, ?, ?)";
+
+		try (Connection connection = Database.getConnection();
+			 PreparedStatement stmt = connection.prepareStatement(sql)) {
+
+			stmt.setDouble(1, orderCost);
+			stmt.setString(2, orderTime);
+			stmt.setInt(3, prepTime);
+
+			stmt.executeUpdate();
 		}
 	}
 

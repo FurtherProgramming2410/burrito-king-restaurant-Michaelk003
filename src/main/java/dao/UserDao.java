@@ -14,6 +14,7 @@ public interface UserDao {
 	void setup() throws SQLException;
 	User getUser(String username, String password) throws SQLException;
 	User createUser(String username, String password) throws SQLException;
+	public void createOrder(String username, double orderCost, String orderTime, int prepTime) throws SQLException;
 
 	User updatePassword(String username, String newPassword) throws SQLException;
 
