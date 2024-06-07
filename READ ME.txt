@@ -1,0 +1,45 @@
+LINK TO GITHUB:
+https://github.com/FurtherProgramming2410/burrito-king-restaurant-Michaelk003
+
+CLASS DESIGN:
+program initiliases withe the main class, then proceeds to each controller class
+
+majority of the code executed occurs in each of the controller classes
+
+the user class is used get and set information in the user information table about the user that is currently logged in
+
+the order class is used to get and set values of item prices, order item quiantities, and total prices, this information is used to place a unique order into the associated users order table when the user checks out on an order
+
+CONTROLLER CLASSES:
+here i will breifly highlight each controller class and their functions
+
+login controller - using valid account credentials , a user can gain access to the home page
+signup controller - user can creat an account and credentials
+home controller - main hompage for the application, greets user, acts as a navigation hub for all other program functionality, shows pending orders
+profile controller - basiacally shows all the information of that user present in the users table
+profile update controller - allows user to change information stored in the database, if they havent already also allows them to get vip status
+add items controller - allows user to select quiantities of items, vip users get access to a combo as a discount,
+chckout cotroller - gets information from the items and shows order summary before checking out, order will be placed as pending with valid credentials, vip users collect credits for evry order and can use them to discount their order
+view order controller - shows a list of all the user's orders, user can filter pending, finalized and all orders, pending orders can be marked as collected or cancelled, each order's information can be viewec
+export order controller - user can select whichever orders they want and select a file location and name to export selected orders and their information into a csv file
+
+
+DATABASE STRUCTURE:
+USERS:
+each row is a unique user contains information that contains,
+username, password, firstname, lastname, vip status , credits
+
+every time a new user is created, a new table is made called orders_"username"
+
+the table tha references this, sqlite_sequence, acts as a pointer table that has the name of the user's table and how many orders they have placed.
+
+the users order table uses each row as an order and contains information about,
+order number, order status, order cost, order time, order prep time, collection time
+
+IMPORTANT NOTE:
+some information may look off in the current structure of the database, for example, user "a" doesnt have an assoicated order table. this is becuase this user was created before the order table functions were implimented and this user was used for testing for earlier testing of the database.
+as a result, any  new user that is created should function as inteneded. 
+
+c order - EXAMPLE was a sample csv file export used to test my export file function
+
+
